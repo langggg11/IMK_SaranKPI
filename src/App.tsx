@@ -1136,11 +1136,11 @@ function BerandaPage({ navigate, currentUser }: { navigate: (p: Page) => void; c
 
       {/* Steps — infographic */}
       <section className="py-14" style={{ backgroundColor: C.muted }}>
-        <div className="w-full px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <img
             src={tataCara}
             alt="Tata Cara Isi Pengaduan — 8 langkah mulai dari persiapan hingga terima nomor tiket"
-            className="w-full rounded-2xl shadow-md"
+            className="w-full h-auto rounded-2xl shadow-md object-contain"
           />
           <div className="text-center mt-8">
             <button

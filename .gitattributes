@@ -81,6 +81,17 @@
 *.woff2              filter=lfs diff=lfs merge=lfs -text
 *.eot                filter=lfs diff=lfs merge=lfs -text
 
+# These web assets must be stored as regular Git files so Vercel can serve them.
+src/imports/logo-kpi.png -filter -diff -merge
+src/imports/image-3.png -filter -diff -merge
+src/imports/image-4.png -filter -diff -merge
+src/imports/image-5.png -filter -diff -merge
+src/imports/Gemini_Generated_Image_fncww9fncww9fncw.jpg -filter -diff -merge
+src/imports/Gemini_Generated_Image_n719ikn719ikn719__1_.jpg -filter -diff -merge
+src/imports/Gemini_Generated_Image_fubnunfubnunfubn.jpg -filter -diff -merge
+public/images/logo-kpi.png -filter -diff -merge
+public/images/tata-cara-pengaduan.jpg -filter -diff -merge
+
 # ---------------------------------------------------------------------------
 # Data & Machine Learning
 # ---------------------------------------------------------------------------

@@ -1,20 +1,85 @@
+# Dependencies
 node_modules/
+jspm_packages/
+web_modules/
+bower_components/
+
+# Production & Builds
 dist/
 build/
+.next
+out
+.nuxt
+.output
+.vuepress/dist
+**/.vitepress/dist
+
+# Caches & Temp
 .cache/
-.env*
+.parcel-cache
+.temp
+.svelte-kit/
+**/.vitepress/cache
+.docusaurus
+.fusebox/
+.firebase/
+.dynamodb/
+.serverless/
+.vscode-test
+.pnpm-store
+.npm
+.eslintcache
+.stylelintcache
+.node_repl_history
+.tmp-*
+.claude-replay.*
+
+# TypeScript
+*.tsbuildinfo
+
+# Vite
 .vite/
 vite.config.*.timestamp-*
-*.tsbuildinfo
-*-debug.log*
+
+# Logs & Diagnostics
 logs/
 *.log
-.claude-replay.*
-.tmp-*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# Platform-managed agentplat state, not project source. In the
-# client-initiated single-repo workspace layout (make's `Path: "."` spec) the
-# repo root IS the workspace root, so these land inside this repo rather than
-# beside it.
+# Runtime & Coverage
+pids
+*.pid
+*.seed
+*.pid.lock
+lib-cov
+coverage
+*.lcov
+.nyc_output
+.grunt
+.lock-wscript
+build/Release
+*.tgz
+.yarn-integrity
+.tern-port
+
+# Yarn v3
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Environment variables
+.env*
+!.env.example
+
+# Platform-managed agentplat state
 /.plugins/
 /.opencode-skills/

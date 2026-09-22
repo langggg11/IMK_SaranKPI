@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import logoKpi from "@/imports/logo-kpi.png";
-import tataCara from "@/imports/Gemini_Generated_Image_fncww9fncww9fncw.jpg";
+const logoKpi = "/images/logo-kpi.png";
+const tataCara = "/images/tata-cara-pengaduan.jpg";
 import imgVisi from "@/imports/image-5.png";
 import imgMisi from "@/imports/image-3.png";
 import imgTugas from "@/imports/image-4.png";

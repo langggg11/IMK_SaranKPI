@@ -1,0 +1,11 @@
+{
+  "title": "Redesign saran.kpi",
+  "description": "Provides a platform for users to submit feedback and suggestions to the Indonesian Broadcasting Commission, facilitating public engagement and communication.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

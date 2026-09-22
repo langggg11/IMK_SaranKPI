@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import 'leaflet/dist/leaflet.css';
+@import 'tailwindcss';
+
+@theme inline {
+  --font-sans: 'Poppins', sans-serif;
+}
+
+/* ── CSS custom properties ─────────────────────────────────────── */
+:root {
+  --color-bg: #fff8f8;
+  --color-muted: #f5f0f0;
+  --color-surface: #ffffff;
+  --color-nav-bg: #ffffff;
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+  --color-border: #e8d5d5;
+  --color-border-soft: #f0dede;
+  --color-primary: #8B1A1A;
+  --color-primary-dark: #5c1010;
+  --color-primary-light: #b02020;
+}
+
+html.dark-mode {
+  --color-bg: #160b0c;
+  --color-muted: #1d1012;
+  --color-surface: #231618;
+  --color-nav-bg: #1e1112;
+  --color-text: #f0e0e0;
+  --color-text-muted: #c0a0a0;
+  --color-border: rgba(255,255,255,0.1);
+  --color-border-soft: rgba(255,255,255,0.07);
+  --color-primary: #e07070;
+  --color-primary-dark: #c05050;
+  --color-primary-light: #f09090;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ── Dark mode overrides ───────────────────────────────────────── */
+html.dark-mode body,
+html.dark-mode #root {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+html.dark-mode nav {
+  background-color: var(--color-nav-bg) !important;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+html.dark-mode nav button {
+  color: var(--color-text);
+}
+
+html.dark-mode nav .text-gray-500 {
+  color: var(--color-text-muted) !important;
+}
+
+html.dark-mode .bg-white { background-color: var(--color-surface) !important; }
+html.dark-mode .bg-gray-50 { background-color: var(--color-muted) !important; }
+html.dark-mode .bg-gray-100 { background-color: var(--color-muted) !important; }
+html.dark-mode .bg-amber-50 { background-color: var(--color-muted) !important; }
+html.dark-mode .bg-blue-50,
+html.dark-mode .bg-indigo-50 { background-color: var(--color-surface) !important; }
+
+html.dark-mode .text-gray-900 { color: #f0e0e0 !important; }
+html.dark-mode .text-gray-800,
+html.dark-mode .text-gray-700 { color: #e0cccc !important; }
+html.dark-mode .text-gray-600,
+html.dark-mode .text-gray-500 { color: #b89898 !important; }
+html.dark-mode .text-gray-400 { color: #9a7a7a !important; }
+html.dark-mode .text-amber-500 { color: #e0a040 !important; }
+html.dark-mode .text-amber-600 { color: #e09030 !important; }
+html.dark-mode .border-amber-100 { border-color: rgba(200,150,0,0.25) !important; }
+
+html.dark-mode .border-gray-100,
+html.dark-mode .border-gray-200 { border-color: rgba(255,255,255,0.08) !important; }
+
+html.dark-mode ::-webkit-scrollbar-track { background: #1e1112; }
+
+html.dark-mode input,
+html.dark-mode select,
+html.dark-mode textarea {
+  background-color: var(--color-surface) !important;
+  color: var(--color-text) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+}
+html.dark-mode input::placeholder,
+html.dark-mode textarea::placeholder {
+  color: var(--color-text-muted) !important;
+}
+html.dark-mode select option {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #7a1a1a; border-radius: 3px; }
+
+/* ── Animations ────────────────────────────────────────────────── */
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.slide-enter { animation: fadeSlide 0.7s ease forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(32px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drawCheck {
+  from { stroke-dashoffset: 30; }
+  to { stroke-dashoffset: 0; }
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

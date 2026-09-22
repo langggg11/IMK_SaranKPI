@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Saran - Pengaduan Penyiaran Televisi dan Radio</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<link rel="shortcut icon" href="https://saran.kpi.go.id/uploads/logo/kpi-favicon.png">
+
+	<!-- ================== BEGIN core-css ================== -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="https://saran.kpi.go.id/assets/fr/css/e-commerce/vendor.min.css" rel="stylesheet" />
+	<link href="https://saran.kpi.go.id/assets/fr/css/e-commerce/app.css" rel="stylesheet" />
+	<link href="https://saran.kpi.go.id/assets/fr/css/e-commerce/custom.css?v=20260625" rel="stylesheet" />
+	<link href="https://saran.kpi.go.id/assets/fr/css/e-commerce/additional.css" rel="stylesheet" />
+
+	<!-- ================== END core-css ================== -->
+
+	<!-- Font Awesome & Plugins (CDN & Local fallback) -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+	<link href="https://saran.kpi.go.id/assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
+	<link href="https://saran.kpi.go.id/assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
+	<link href="https://saran.kpi.go.id/assets/plugins/izitoast/iziToast.min.css" rel="stylesheet">
+	<link href="https://saran.kpi.go.id/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+	<link href="https://saran.kpi.go.id/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+
+	<script src="https://saran.kpi.go.id/assets/plugins/jQuery/jquery.min.js"></script>
+	<script src="https://saran.kpi.go.id/assets/js/adminlte.js"></script>
+	<script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="https://saran.kpi.go.id/assets/fr/js/e-commerce/vendor.min.js?_=514"></script>
+	<script src="https://saran.kpi.go.id/assets/fr/js/e-commerce/app.min.js"></script>
+	<script src="https://saran.kpi.go.id/assets/fr/js/onscroll.js?v=20260625"></script>
+	<!-- plugins -->
+	<script src="https://saran.kpi.go.id/assets/plugins/parsley/dist/parsley.js"></script>
+	<script src="https://saran.kpi.go.id/assets/plugins/parsley/dist/i18n/id.js"></script>
+	<script src="https://saran.kpi.go.id/assets/plugins/izitoast/iziToast.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
+	<script src="https://saran.kpi.go.id/assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+	<script src="https://saran.kpi.go.id/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<style>
+		/* Custom enhancement for Select2 in form-control-lg */
+		.select2-container .select2-selection--single {
+			height: 48px !important;
+			padding: 8px 12px !important;
+			border: 1px solid #ced4da !important;
+			border-radius: 4px !important;
+			display: flex !important;
+			align-items: center !important;
+			transition: border-color 0.2s, background-color 0.2s;
+		}
+		.select2-container--default .select2-selection--single .select2-selection__rendered {
+			line-height: 32px !important;
+			font-size: 1rem !important;
+			color: #495057 !important;
+			padding-left: 0 !important;
+		}
+		.select2-container--default .select2-selection--single .select2-selection__arrow {
+			height: 46px !important;
+			right: 10px !important;
+		}
+		.separator span {
+			font-weight: 700 !important;
+			letter-spacing: 0.5px;
+		}
+		.separator span i {
+			font-size: 1.1rem;
+		}
+
+		/* Interactive validation styling */
+		.form-group {
+			margin-bottom: 16px;
+			position: relative;
+		}
+		.input-wrapper-custom {
+			position: relative;
+			display: flex;
+			align-items: center;
+			width: 100%;
+		}
+		.input-wrapper-custom .form-control {
+			padding-right: 38px !important;
+			transition: all 0.2s ease-in-out;
+		}
+		.field-icon-status {
+			position: absolute;
+			right: 12px;
+			font-size: 14px;
+			pointer-events: none;
+			z-index: 6;
+			display: none;
+		}
+		.field-icon-status.show {
+			display: block;
+		}
+		.field-icon-status.success {
+			color: #28a745;
+		}
+		.field-icon-status.danger {
+			color: #dc3545;
+		}
+		.field-icon-status.warning {
+			color: #ffc107;
+		}
+
+		/* Border and background highlight states */
+		.is-valid-custom {
+			border-color: #70c78a !important;
+			background-color: #f7fcf8 !important;
+		}
+		.is-invalid-custom {
+			border-color: #f1828d !important;
+			background-color: #fff8f8 !important;
+		}
+		.is-warning-custom {
+			border-color: #f0ad4e !important;
+			background-color: #fffdf5 !important;
+		}
+
+		/* Select2 custom validation borders */
+		.select2-valid .select2-selection--single {
+			border-color: #70c78a !important;
+			background-color: #f7fcf8 !important;
+		}
+		.select2-invalid .select2-selection--single {
+			border-color: #f1828d !important;
+			background-color: #fff8f8 !important;
+		}
+
+		/* Validation Messages */
+		.val-msg {
+			font-size: 12px;
+			margin-top: 4px;
+			display: none;
+			line-height: 1.4;
+		}
+		.val-msg.show {
+			display: block;
+		}
+		.val-msg.success {
+			color: #28a745;
+			font-weight: 500;
+		}
+		.val-msg.danger {
+			color: #dc3545;
+			font-weight: 500;
+		}
+		.val-msg.warning-box {
+			background-color: #fffdf2;
+			border: 1px solid #ffe8a1;
+			border-radius: 6px;
+			padding: 8px 12px;
+			margin-top: 6px;
+			font-size: 12px;
+			color: #8a6d3b;
+		}
+		.val-subtext {
+			font-size: 11px;
+			color: #8c8c8c;
+			margin-top: 2px;
+			display: block;
+		}
+
+		/* Password Strength Meter */
+		.pwd-meter-container {
+			display: flex;
+			gap: 6px;
+			margin-top: 8px;
+			margin-bottom: 6px;
+		}
+		.pwd-meter-bar {
+			height: 4px;
+			flex: 1;
+			background-color: #e9ecef;
+			border-radius: 2px;
+			transition: background-color 0.3s ease;
+		}
+		.pwd-meter-bar.active-weak {
+			background-color: #dc3545;
+		}
+		.pwd-meter-bar.active-medium {
+			background-color: #ffc107;
+		}
+		.pwd-meter-bar.active-strong {
+			background-color: #28a745;
+		}
+
+		.pwd-req-list {
+			list-style: none;
+			padding-left: 0;
+			margin: 6px 0 0 0;
+			font-size: 11.5px;
+		}
+		.pwd-req-item {
+			color: #6c757d;
+			margin-bottom: 2px;
+			transition: color 0.2s ease;
+		}
+		.pwd-req-item.met {
+			color: #28a745;
+			font-weight: 600;
+		}
+		.pwd-req-item i {
+			margin-right: 4px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- BEGIN #page-container -->
+	<div id="page-container" class="fade show">
+		<!-- BEGIN #top-nav -->
+		<div id="top-nav" class="top-nav">
+			<!-- BEGIN container -->
+			<div class="container">
+				<div class="collapse navbar-collapse">
+
+					<ul class="nav navbar-nav navbar-end">
+						<li><a href="https://saran.kpi.go.id/download" target="_blank"><i class="text-blue-darker fa fa-download f-s-14"></i> DOWNLOAD APLIKASI</a></li>
+
+						<li class="d-flex justify-content-center align-items-center">
+							<form action="https://saran.kpi.go.id/search_results" method="GET" name="search_form">
+								<div class="input-group input-group-sm">
+									<input type="text" name="keyword" value="" placeholder="Search" class="form-control form-control-sm bg-light" required />
+									<button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+								</div>
+							</form>
+						</li>
+
+						<li><a href="https://web.facebook.com/KPIPusat/" target="_blank"><i class="text-blue-darker fab fa-facebook-f f-s-14"></i></a></li>
+						<li><a href="https://twitter.com/kpi_pusat" target="_blank"><i class="text-blue-lighter fab fa-twitter f-s-14"></i></a></li>
+						<li><a href="https://www.instagram.com/kpipusat/" target="_blank"><i class="text-pink-darker fab fa-instagram f-s-14"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- END container -->
+		</div>
+		<!-- END #top-nav -->
+
+		<!-- BEGIN #header -->
+		<div id="header" class="header bg-kpi">
+			<!-- BEGIN container -->
+			<div class="container">
+				<!-- BEGIN header-container -->
+				<div class="header-container" style="padding-top: 5px">
+					<!-- BEGIN navbar-toggle -->
+					<button type="button" class="navbar-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- END navbar-toggle -->
+
+					<!-- BEGIN header-logo -->
+					<div class="header-logo">
+						<a href="https://saran.kpi.go.id/" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+							<img src="https://saran.kpi.go.id/uploads/logo/kpi-favicon.png" alt="Logo KPI" style="max-height:46px;width:auto;flex-shrink:0;">
+							<img src="https://saran.kpi.go.id/assets/logo-saran.png" alt="Logo Saran" class="d-none d-sm-block" style="max-height:40px;width:auto;flex-shrink:0;filter:drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);">
+							<span class="d-none d-md-flex" style="flex-direction:column;justify-content:center;">
+								<span style="color:#fff;font-weight:700;font-size:13px;line-height:1.2;">Komisi Penyiaran Indonesia</span>
+								<small style="color:rgba(255,255,255,0.75);font-size:9px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;">Pengaduan Penyiaran Televisi dan Radio</small>
+							</span>
+						</a>
+					</div>
+					<!-- END header-logo -->
+
+					<!-- BEGIN header-nav -->
+					<div class="header-nav">
+						<div class="collapse navbar-collapse" id="navbar-collapse">
+							<ul class="nav justify-content-center">
+								<li class=""><a href="https://saran.kpi.go.id/" style="color:#ffffff!important;font-weight:600;">BERANDA</a></li>
+								<li class="dropdown dropdown-hover-all">
+									<a href="#" data-bs-toggle="dropdown">
+										PROFIL 
+										<b class="caret"></b>
+										<span class="arrow top"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li class="dropdown-item"><a href="https://saran.kpi.go.id/web/laman/YToxOntzOjI6ImlkIjtzOjE6IjkiO30-">Visi dan Misi</a></li>
+										<li class="dropdown-item"><a href="https://saran.kpi.go.id/web/laman/YToxOntzOjI6ImlkIjtzOjI6IjExIjt9" target="_blank">Maklumat Pelayanan</a></li>
+										<li class="dropdown-item"><a href="https://saran.kpi.go.id/web/laman/YToxOntzOjI6ImlkIjtzOjI6IjMyIjt9">Jadwal Pelayanan</a></li>
+									</ul>
+								</li>
+								<li class="dropdown dropdown-hover-all">
+									<a href="#" data-bs-toggle="dropdown">
+										PENGADUAN PENYIARAN 
+										<b class="caret"></b>
+										<span class="arrow top"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li class="dropdown-item"><a href="https://saran.kpi.go.id/lapor">Formulir Pengaduan</a></li>
+										<li class="dropdown-item"><a href="https://saran.kpi.go.id/member_area/aduan">Pengaduan Saya</a></li>
+									</ul>
+								</li>
+								<li><a href="https://saran.kpi.go.id/website/berita">BERITA</a></li>
+								<li class="dropdown dropdown-hover-all">
+									<a href="#" data-bs-toggle="dropdown">
+										DATA 
+										<b class="caret"></b>
+										<span class="arrow top"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li class="dropdown-item"><a href="https://saran.kpi.go.id/website/data/index/YToxOntzOjExOiJpZF9rYXRlZ29yaSI7czoxOiIxIjt9">Laporan Pelayanan Pengaduan</a></li>
+									</ul>
+								</li>
+								<li><a href="https://saran.kpi.go.id/web/laman/YToxOntzOjI6ImlkIjtzOjI6IjMwIjt9">KETENTUAN</a></li>
+								<li class="dropdown dropdown-hover-all">
+									<a href="#" data-bs-toggle="dropdown">
+										KONTAK 
+										<b class="caret"></b>
+										<span class="arrow top"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li class="dropdown-item"><a href="https://saran.kpi.go.id/website/kontak/kpi_pusat">KPI PUSAT</a></li>
+										<li class="dropdown-item"><a href="https://saran.kpi.go.id/website/kontak/kpid">KPID</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+
+						<div class="ms-auto d-flex align-items-center" style="padding-right:8px;">
+							<a href="https://skm.go.id/isi-survey/538ffb43-0829-442d-a3e1-991ece3f1bd4/0a48b15e-229b-4a06-b9fa-da8b150cefb1" target="_blank" rel="noopener"
+							   class="btn-survei-kpm"
+							   title="Survei Kepuasan Masyarakat Penanganan Pengaduan 2026">
+								<span class="btn-survei-icon"><i class="fa fa-star"></i></span>
+								<span class="btn-survei-label">
+									<small>Isi</small>
+									<strong>Survei KPM 2026</strong>
+								</span>
+							</a>
+						</div>
+					</div>
+					<!-- END header-nav -->
+
+					<!-- BEGIN header-nav login/register -->
+					<div class="header-nav">
+						<ul class="nav justify-content-end">
+							<li>
+								<a href="https://saran.kpi.go.id/user_login" class="text-nowrap" style="color:#fff!important;font-weight:700;">
+									<span>MASUK</span>
+								</a>
+							</li>
+							<li style="margin-left:8px;">
+								<a href="https://saran.kpi.go.id/user_register" class="text-nowrap" style="line-height:1rem;background:#fff;color:#C0272D!important;font-weight:700;padding:8px 16px;border-radius:6px;border:2px solid #fff;">
+									<span>DAFTAR</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- END header-nav -->
+				</div>
+				<!-- END header-container -->
+			</div>
+			<!-- END container -->
+		</div>
+		<!-- END #header -->
+
+		<main id="main" style="padding-top: 50px; background-image: url('https://saran.kpi.go.id/assets/images/intro-bg2.png'); background-repeat: no-repeat;background-size: auto;">
+			<!-- ======= App Features Section ======= -->
+			<section id="features" class="features">
+				<div class="container" style="padding-bottom: 50px ;">
+					<div class="row">
+						<div class="offset-md-2 col-md-8">
+							<form action="https://saran.kpi.go.id/user_register/simpan_cp" class="general-form" method="POST" enctype="multipart/form-data" data-parsley-validate=true accept-charset="utf-8">
+								<input type="hidden" name="saran_csrf" value="6af58aef653c55759374cdc47da821b4" />                                                                                                             
+								
+								<!-- card -->
+								<div class="card card-pengaduan m-t-15" style="box-shadow: 0 12px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+									<div class="card-header">
+										<div class="text-center">
+											<h2>Daftar</h2>
+											<p class="text-muted m-b-0">Isi data identitas Anda dengan benar untuk membuat akun pengaduan.</p>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="row">
+											<div class="col-lg-12">
+
+												<!-- ==================== BAGIAN 1: DATA IDENTITAS ==================== -->
+												<h5 class="separator m-b-20"><span class="f-w-700" style="font-weight:700;"><i class="far fa-id-card text-danger m-r-5"></i> DATA IDENTITAS</span></h5>
+
+												<div class="row">
+													<!-- NIK -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="nik" class="col-form-label-lg f-w-600">NIK <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<input type="text" id="field_nik" name="nik" value="" class="form-control form-control-lg" data-parsley-required="1" placeholder="Masukkan 16 digit NIK" maxlength="20" />
+																	<i class="field-icon-status fa" id="icon_nik"></i>
+																</div>
+																<div class="val-msg" id="msg_nik"></div>
+															</div>
+														</div>
+													</div>
+
+													<!-- Tipe Pengguna -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="tipe_pengguna" class="col-form-label-lg f-w-600">Tipe Pengguna <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<select id="field_tipe_pengguna" name="tipe_pengguna" class="form-control form-control-lg is-valid-custom" data-parsley-required="1">
+																		<option value="perorangan" selected>Perorangan</option>
+																		<option value="badan_hukum">Badan Hukum</option>
+																		<option value="kelompok">Kelompok</option>
+																	</select>
+																	<i class="field-icon-status fa fa-check success show" id="icon_tipe_pengguna" style="right: 28px;"></i>
+																</div>
+																<div class="val-msg success show" id="msg_tipe_pengguna">&#10003; Tipe pengguna berhasil dipilih.</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="row">
+													<!-- Nama Lengkap -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="nama" class="col-form-label-lg f-w-600">Nama Lengkap <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<input type="text" id="field_nama" name="nama" value="" class="form-control form-control-lg" data-parsley-required="1" placeholder="Nama lengkap sesuai KTP" />
+																	<i class="field-icon-status fa" id="icon_nama"></i>
+																</div>
+																<div class="val-msg" id="msg_nama"></div>
+															</div>
+														</div>
+													</div>
+
+													<!-- Jenis Kelamin -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="id_gender" class="col-form-label-lg f-w-600">Jenis Kelamin <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<select id="field_id_gender" name="id_gender" class="form-control form-control-lg select2" style="width:100%" data-parsley-required="1">
+																		<option value="" selected="selected">Pilih</option>
+																		<option value="1">Laki-laki</option>
+																		<option value="2">Perempuan</option>
+																	</select>
+																	<i class="field-icon-status fa" id="icon_id_gender" style="right: 32px;"></i>
+																</div>
+																<div class="val-msg" id="msg_id_gender"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="row">
+													<!-- Tanggal Lahir (Setengah Lebar Sesuai Kolom di Atasnya) -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="tanggal_lahir" class="col-form-label-lg f-w-600">Tanggal Lahir <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<input type="text" id="field_tanggal_lahir" name="tanggal_lahir" value="" class="form-control form-control-lg datepicker" data-parsley-required="1" placeholder="DD/MM/YYYY" />
+																	<i class="field-icon-status fa" id="icon_tanggal_lahir"></i>
+																</div>
+																<div class="val-msg" id="msg_tanggal_lahir"></div>
+																<span class="val-subtext" id="sub_tanggal_lahir">Pendaftar harus berusia minimal 17 tahun.</span>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- ==================== BAGIAN 2: KONTAK & LOKASI ==================== -->
+												<h5 class="separator m-t-25 m-b-20"><span class="f-w-700" style="font-weight:700;"><i class="fas fa-map-marker-alt text-danger m-r-5"></i> KONTAK & LOKASI</span></h5>
+
+												<div class="row">
+													<!-- Pekerjaan -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="pekerjaan" class="col-form-label-lg f-w-600">Pekerjaan <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<select id="field_pekerjaan" name="pekerjaan" class="form-control form-control-lg select2" style="width:100%" data-parsley-required="1" data-url="https://saran.kpi.go.id/ajax/combo/pekerjaan">
+																		<option value="" selected="selected">Pilih</option>
+																		<option value="84">Akuntan</option>
+																		<option value="64">Anggota BPK</option>
+																		<option value="63">Anggota DPD</option>
+																		<option value="62">Anggota DPR-RI</option>
+																		<option value="77">Anggota DPRD Kabupaten/ Kota</option>
+																		<option value="76">Anggota DPRD Provinsi</option>
+																		<option value="68">Anggota Kabinet/ Kementerian</option>
+																		<option value="67">Anggota Mahkamah Konstitusi</option>
+																		<option value="89">Apoteker</option>
+																		<option value="83">Arsitek</option>
+																		<option value="14">Belum/ Tidak Bekerja</option>
+																		<option value="101">Biarawati</option>
+																		<option value="87">Bidan</option>
+																		<option value="72">Bupati</option>
+																		<option value="33">Buruh Harian Lepas</option>
+																		<option value="35">Buruh Nelayan/ Perikanan</option>
+																		<option value="36">Buruh Peternakan</option>
+																		<option value="34">Buruh Tani/ Perkebunan</option>
+																		<option value="86">Dokter</option>
+																		<option value="78">Dosen</option>
+																		<option value="69">Duta Besar</option>
+																		<option value="70">Gubernur</option>
+																		<option value="79">Guru</option>
+																		<option value="55">Imam Masjid</option>
+																		<option value="25">Industri</option>
+																		<option value="60">Juru Masak</option>
+																		<option value="31">Karyawan BUMD</option>
+																		<option value="30">Karyawan BUMN</option>
+																		<option value="32">Karyawan Honorer</option>
+																		<option value="29">Karyawan Swasta</option>
+																		<option value="100">Kepala Desa</option>
+																		<option value="20">Kepolisisan RI</option>
+																		<option value="26">Konstruksi</option>
+																		<option value="85">Konsultan</option>
+																		<option value="49">Mekanik</option>
+																		<option value="15">Mengurus Rumah Tangga</option>
+																		<option value="24">Nelayan/ Perikanan</option>
+																		<option value="82">Notaris</option>
+																		<option value="52">Paraji</option>
+																		<option value="97">Paranormal</option>
+																		<option value="57">Pastor</option>
+																		<option value="98">Pedagang</option>
+																		<option value="16">Pelajar/ Mahasiswa</option>
+																		<option value="93">Pelaut</option>
+																		<option value="37">Pembantu Rumah Tangga</option>
+																		<option value="47">Penata Busana</option>
+																		<option value="48">Penata Rambut</option>
+																		<option value="46">Penata Rias</option>
+																		<option value="56">Pendeta</option>
+																		<option value="94">Peneliti</option>
+																		<option value="81">Pengacara</option>
+																		<option value="17">Pensiunan</option>
+																		<option value="54">Penterjemah</option>
+																		<option value="92">Penyiar Radio</option>
+																		<option value="91">Penyiar Televisi</option>
+																		<option value="53">Perancang Busana</option>
+																		<option value="99">Perangkat Desa</option>
+																		<option value="88">Perawat</option>
+																		<option value="21">Perdagangan</option>
+																		<option value="22">Petani/ Pekebun</option>
+																		<option value="23">Peternak</option>
+																		<option value="18">Pewagai Negeri Sipil</option>
+																		<option value="96">Pialang</option>
+																		<option value="80">Pilot</option>
+																		<option value="65">Presiden</option>
+																		<option value="61">Promotor Acara</option>
+																		<option value="90">Psikiater/ Psikolog</option>
+																		<option value="50">Seniman</option>
+																		<option value="95">Sopir</option>
+																		<option value="51">Tabib</option>
+																		<option value="19">Tentara Nasional Indonesia</option>
+																		<option value="27">Transportasi</option>
+																		<option value="40">Tukang Batu</option>
+																		<option value="38">Tukang Cukur</option>
+																		<option value="45">Tukang Gigi</option>
+																		<option value="44">Tukang Jahit</option>
+																		<option value="41">Tukang Kayu</option>
+																		<option value="43">Tukang Las/ Pandai Besi</option>
+																		<option value="39">Tukang Listrik</option>
+																		<option value="42">Tukang Sol Sepatu</option>
+																		<option value="59">Ustadz/ Mubaligh</option>
+																		<option value="73">Wakil Bupati</option>
+																		<option value="71">Wakil Gubernur</option>
+																		<option value="66">Wakil Presiden</option>
+																		<option value="75">Wakil Walikota</option>
+																		<option value="74">Walikota</option>
+																		<option value="58">Wartawan</option>
+																		<option value="102">Wiraswasta</option>
+																	</select>
+																	<i class="field-icon-status fa" id="icon_pekerjaan" style="right: 32px;"></i>
+																</div>
+																<div class="val-msg" id="msg_pekerjaan"></div>
+															</div>
+														</div>
+													</div>
+
+													<!-- Nomor Telepon -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="telp" class="col-form-label-lg f-w-600">Nomor Telepon <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<input type="text" id="field_telp" name="telp" value="" class="form-control form-control-lg" data-parsley-required="1" placeholder="Contoh: 082712719222" maxlength="15" />
+																	<i class="field-icon-status fa" id="icon_telp"></i>
+																</div>
+																<div class="val-msg" id="msg_telp"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Alamat Domisili Lengkap (Full Width) -->
+												<div class="row">
+													<div class="col-12">
+														<div class="form-group">
+															<label for="alamat_domisili" class="col-form-label-lg f-w-600">Alamat Domisili Lengkap <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<textarea id="field_alamat_domisili" name="alamat_domisili" cols="40" rows="3" class="form-control form-control-lg" placeholder="Sertakan nama jalan, RT/RW, Kelurahan/Desa, Kecamatan, dan Kota/Kabupaten" data-parsley-required="1"></textarea>
+																<div class="val-msg" id="msg_alamat_domisili"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Kode Pos & Provinsi Domisili (Sejajar) -->
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="kodepos_domisili" class="col-form-label-lg f-w-600">Kode Pos <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<input type="text" id="field_kodepos_domisili" name="kodepos_domisili" value="" class="form-control form-control-lg" placeholder="Contoh: 38229" maxlength="6" />
+																	<i class="field-icon-status fa" id="icon_kodepos_domisili"></i>
+																</div>
+																<div class="val-msg" id="msg_kodepos_domisili"></div>
+															</div>
+														</div>
+													</div>
+
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="id_propinsi_domisili" class="col-form-label-lg f-w-600">Provinsi Domisili <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<select id="field_id_propinsi_domisili" name="id_propinsi_domisili" class="form-control form-control-lg select2" style="width:100%" data-parsley-required="1" data-url="https://saran.kpi.go.id/ajax/combo/propinsi">
+																		<option value="" selected="selected">Pilih</option>
+																		<option value="3">ACEH</option>
+																		<option value="20">BALI</option>
+																		<option value="6">BANTEN</option>
+																		<option value="9">BENGKULU</option>
+																		<option value="40">DAERAH ISTIMEWA YOGYAKARTA</option>
+																		<option value="39">DAERAH KHUSUS IBUKOTA JAKARTA</option>
+																		<option value="27">GORONTALO</option>
+																		<option value="12">JAMBI</option>
+																		<option value="17">JAWA BARAT</option>
+																		<option value="7">JAWA TENGAH</option>
+																		<option value="8">JAWA TIMUR</option>
+																		<option value="21">KALIMANTAN BARAT</option>
+																		<option value="22">KALIMANTAN SELATAN</option>
+																		<option value="23">KALIMANTAN TENGAH</option>
+																		<option value="24">KALIMANTAN TIMUR</option>
+																		<option value="41">KALIMANTAN UTARA</option>
+																		<option value="15">KEPULAUAN BANGKA BELITUNG</option>
+																		<option value="10">KEPULAUAN RIAU</option>
+																		<option value="14">LAMPUNG</option>
+																		<option value="33">MALUKU</option>
+																		<option value="34">MALUKU UTARA</option>
+																		<option value="26">NUSA TENGGARA BARAT</option>
+																		<option value="25">NUSA TENGGARA TIMUR</option>
+																		<option value="35">PAPUA</option>
+																		<option value="42">PAPUA BARAT</option>
+																		<option value="11">RIAU</option>
+																		<option value="29">SULAWESI BARAT</option>
+																		<option value="28">SULAWESI SELATAN</option>
+																		<option value="32">SULAWESI TENGAH</option>
+																		<option value="31">SULAWESI TENGGARA</option>
+																		<option value="30">SULAWESI UTARA</option>
+																		<option value="37">SUMATERA BARAT</option>
+																		<option value="38">SUMATERA SELATAN</option>
+																		<option value="36">SUMATERA UTARA</option>
+																	</select>
+																	<i class="field-icon-status fa" id="icon_id_propinsi_domisili" style="right: 32px;"></i>
+																</div>
+																<div class="val-msg" id="msg_id_propinsi_domisili"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- ==================== BAGIAN 3: DATA AKUN ==================== -->
+												<h5 class="separator m-t-25 m-b-20"><span class="f-w-700" style="font-weight:700;"><i class="fas fa-user-lock text-danger m-r-5"></i> DATA AKUN</span></h5>
+
+												<div class="row">
+													<!-- Username -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="username" class="col-form-label-lg f-w-600">Username <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<input type="text" id="field_username" name="username" value="" class="form-control form-control-lg" data-parsley-required="1" placeholder="Username untuk login" />
+																	<i class="field-icon-status fa" id="icon_username"></i>
+																</div>
+																<div class="val-msg" id="msg_username"></div>
+															</div>
+														</div>
+													</div>
+
+													<!-- Email -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="email" class="col-form-label-lg f-w-600">Email <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-wrapper-custom">
+																	<input type="text" id="field_email" name="email" value="" class="form-control form-control-lg" data-parsley-required="1" placeholder="alamat@email.com" />
+																	<i class="field-icon-status fa" id="icon_email"></i>
+																</div>
+																<div class="val-msg" id="msg_email"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="row">
+													<!-- Password -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="password" class="col-form-label-lg f-w-600">Password <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-group" id="show_hide_password">
+																	<input type="password" id="field_password" name="password" value="" class="form-control form-control-lg" data-parsley-required="1" placeholder="Kata sandi" />
+																	<span class="input-group-text" id="basic-addon2"><a href=""><i class="fa fa-eye-slash" aria-hidden="true" style="color:black;"></i></a></span>
+																</div>
+																<!-- Password Strength Meter & Checklist -->
+																<div class="pwd-meter-container">
+																	<div class="pwd-meter-bar" id="pwd_bar_1"></div>
+																	<div class="pwd-meter-bar" id="pwd_bar_2"></div>
+																	<div class="pwd-meter-bar" id="pwd_bar_3"></div>
+																</div>
+																<div class="val-msg" id="msg_password"></div>
+																<ul class="pwd-req-list">
+																	<li class="pwd-req-item" id="req_upper"><i class="far fa-circle"></i> Mengandung huruf kapital (A-Z)</li>
+																	<li class="pwd-req-item" id="req_lower"><i class="far fa-circle"></i> Mengandung huruf kecil (a-z)</li>
+																	<li class="pwd-req-item" id="req_number"><i class="far fa-circle"></i> Mengandung angka (0-9)</li>
+																	<li class="pwd-req-item" id="req_len"><i class="far fa-circle"></i> Minimal 8 karakter</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+
+													<!-- Konfirmasi Password -->
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="konfirmasi_password" class="col-form-label-lg f-w-600">Konfirmasi Password <span class="text-danger">*</span></label>
+															<div class="col-12">
+																<div class="input-group" id="show_hide_password2">
+																	<input type="password" id="field_konfirmasi_password" name="konfirmasi_password" value="" class="form-control form-control-lg" data-parsley-required="1" data-parsley-equalto="[name=password]" placeholder="Ulangi kata sandi" />
+																	<span class="input-group-text" id="basic-addon2"><a href=""><i class="fa fa-eye-slash" aria-hidden="true" style="color:black;"></i></a></span>
+																</div>
+																<div class="val-msg" id="msg_konfirmasi_password"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Catatan Keamanan / Privasi -->
+												<div class="alert alert-light border m-t-20 m-b-10" style="background:#fdfcf7; border-color:#faebcc; border-radius:8px;">
+													<div class="d-flex align-items-start">
+														<i class="fas fa-shield-alt text-warning m-r-10 m-t-3 f-s-16"></i>
+														<div style="font-size: 13px; line-height: 1.5; color: #66521a;">
+															<strong>Data Anda aman bersama kami.</strong> Informasi yang Anda isi hanya digunakan untuk keperluan verifikasi identitas pelapor dan tidak akan dibagikan kepada pihak ketiga tanpa persetujuan Anda. Dengan mendaftar, Anda menyetujui <a href="https://saran.kpi.go.id/web/privacy_policy" target="_blank" style="color:#b8860b; text-decoration:underline;">Kebijakan Privasi</a> KPI.
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+
+									</div>
+									<div class="card-footer">
+										<div class="float-start">
+											<span>Punya akun ?</span>
+											<a href="https://saran.kpi.go.id/user_login" class="btn btn-danger text-white">LOGIN</a>
+										</div>
+										<div class="float-end">
+											<button type="submit" class="btn btn-primary text-white">Daftar</button>
+										</div>
+
+									</div>
+								</div>
+								<!-- card -->
+							</form>
+						</div>
+
+						<!-- ./row -->
+					</div>
+				</div>
+			</section><!-- End App Features Section -->
+		</main><!-- End #main -->
+
+		<!-- BEGIN #footer -->
+		<div id="footer" class="footer">
+			<div class="container">
+				<div class="row g-5 py-2">
+
+					<!-- COL 1: Logo + Deskripsi + Sosmed -->
+					<div class="col-lg-4 col-md-12">
+						<div class="d-flex align-items-center gap-3 mb-4">
+							<img src="https://saran.kpi.go.id/assets/logo/logo-kpi.png" alt="KPI Pusat"
+								 style="height:80px;width:80px;border-radius:50%;background:#fff;padding:5px;object-fit:contain;box-shadow:0 4px 16px rgba(0,0,0,0.4);flex-shrink:0;">
+							<div>
+								<img src="https://saran.kpi.go.id/assets/logo-saran.png" alt="SARAN"
+									 style="height:56px;width:auto;object-fit:contain;filter:brightness(0) invert(1);display:block;margin-bottom:2px;">
+								<div style="font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;">Sahabat Penyiaran</div>
+							</div>
+						</div>
+						<div style="height:1px;background:rgba(255,255,255,0.08);margin-bottom:16px;"></div>
+						<p style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:20px;">
+							Sistem Aduan dan Aspirasi Komisi Penyiaran Indonesia — wadah resmi masyarakat untuk melaporkan konten siaran televisi dan radio yang tidak sesuai ketentuan penyiaran.
+						</p>
+						<div style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Ikuti Kami</div>
+						<div class="d-flex gap-2">
+							<a href="https://web.facebook.com/KPIPusat/" target="_blank" class="footer-sosmed-btn" title="Facebook KPI Pusat"><i class="fab fa-facebook-f"></i></a>
+							<a href="https://twitter.com/kpi_pusat" target="_blank" class="footer-sosmed-btn" title="Twitter KPI Pusat"><i class="fab fa-twitter"></i></a>
+							<a href="https://www.instagram.com/kpipusat/" target="_blank" class="footer-sosmed-btn" title="Instagram KPI Pusat"><i class="fab fa-instagram"></i></a>
+							<a href="https://www.youtube.com/@KPIPusat" target="_blank" class="footer-sosmed-btn" title="YouTube KPI Pusat"><i class="fab fa-youtube"></i></a>
+						</div>
+					</div>
+
+					<!-- COL 2: Navigasi -->
+					<div class="col-lg-3 col-md-4">
+						<h6 class="footer-header">Navigasi</h6>
+						<ul class="footer-links">
+							<li><a href="https://saran.kpi.go.id/">Beranda</a></li>
+							<li><a href="https://saran.kpi.go.id/web/laman/YToxOntzOjI6ImlkIjtpOjk7fQ-">Profil KPI</a></li>
+							<li><a href="https://saran.kpi.go.id/lapor">Buat Pengaduan</a></li>
+							<li><a href="https://saran.kpi.go.id/lapor/lacak">Lacak Aduan</a></li>
+							<li><a href="https://saran.kpi.go.id/website/berita">Berita</a></li>
+							<li><a href="https://saran.kpi.go.id/website/data/index/YToxOntzOjExOiJpZF9rYXRlZ29yaSI7aToxO30-">Data &amp; Statistik</a></li>
+							<li><a href="https://saran.kpi.go.id/web/laman/YToxOntzOjI6ImlkIjtpOjI4O30-">Kontak</a></li>
+							<li><a href="https://saran.kpi.go.id/web/privacy_policy">Kebijakan Privasi</a></li>
+						</ul>
+					</div>
+
+					<!-- COL 3: Link Terkait -->
+					<div class="col-lg-2 col-md-4">
+						<h6 class="footer-header">Link Terkait</h6>
+						<ul class="footer-links">
+							<li><a href="http://kpi.go.id" target="_blank">kpi.go.id</a></li>
+							<li><a href="http://lapor.go.id" target="_blank">lapor.go.id</a></li>
+							<li><a href="http://smiled.kpi.go.id" target="_blank">smiled.kpi.go.id</a></li>
+							<li><a href="http://sippn.menpan.go.id" target="_blank">sippn.menpan.go.id</a></li>
+						</ul>
+					</div>
+
+					<!-- COL 4: Lokasi + Maps -->
+					<div class="col-lg-3 col-md-4">
+						<h6 class="footer-header">Hubungi Kami</h6>
+						<ul class="footer-contact-list">
+							<li>
+								<i class="fas fa-map-marker-alt"></i>
+								<span>Jl. H. Juanda No.36, Gambir,<br>Jakarta Pusat 10120</span>
+							</li>
+							<li>
+								<i class="fas fa-phone-alt"></i>
+								<span>(021) 3521637</span>
+							</li>
+							<li>
+								<i class="fas fa-envelope"></i>
+								<span>humas@kpi.go.id</span>
+							</li>
+							<li>
+								<i class="fas fa-clock"></i>
+								<span>Senin–Jumat, 08.00–16.00 WIB</span>
+							</li>
+						</ul>
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.728553729245!2d106.82024381497229!3d-6.16709316215585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d863d70bc7%3A0x7e651127df855e34!2sKomisi%20Penyiaran%20Indonesia%20(KPI)%20Pusat!5e0!3m2!1sen!2sid!4v1663748988940!5m2!1sen!2sid"
+							width="100%" height="145" style="border:0;border-radius:10px;margin-top:14px;opacity:0.9;" allowfullscreen="" loading="lazy"></iframe>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- END #footer -->
+
+		<!-- BEGIN #footer-copyright -->
+		<div id="footer-copyright" class="footer-copyright">
+			<div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+				<div class="copyright">
+					&copy; 2026 Komisi Penyiaran Indonesia &mdash; SARAN Sahabat Penyiaran. Seluruh hak cipta dilindungi.
+				</div>
+				<a href="#" onclick="topFunction()" class="scrolltop" id="return-to-top"><i class="fas fa-arrow-up"></i></a>
+			</div>
+		</div>
+		<!-- END #footer-copyright -->
+	</div>
+	<!-- END #page-container -->
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// Password visibility toggle
+			$("#show_hide_password a").on('click', function(event) {
+				event.preventDefault();
+				if ($('#field_password').attr("type") == "text") {
+					$('#field_password').attr('type', 'password');
+					$('#show_hide_password i').addClass("fa-eye-slash").removeClass("fa-eye");
+				} else {
+					$('#field_password').attr('type', 'text');
+					$('#show_hide_password i').removeClass("fa-eye-slash").addClass("fa-eye");
+				}
+			});
+
+			$("#show_hide_password2 a").on('click', function(event) {
+				event.preventDefault();
+				if ($('#field_konfirmasi_password').attr("type") == "text") {
+					$('#field_konfirmasi_password').attr('type', 'password');
+					$('#show_hide_password2 i').addClass("fa-eye-slash").removeClass("fa-eye");
+				} else {
+					$('#field_konfirmasi_password').attr('type', 'text');
+					$('#show_hide_password2 i').removeClass("fa-eye-slash").addClass("fa-eye");
+				}
+			});
+
+			// Datepicker init & event
+			$(".datepicker").datepicker({
+				todayHighlight: true,
+				autoclose: true,
+				format: 'dd/mm/yyyy',
+				dateFormat: 'dd/mm/yyyy'
+			}).on('changeDate change', function() {
+				validateTanggalLahir();
+			});
+
+			$(".timepicker").timepicker({
+				showMeridian: false,
+				format: 'HH:mm'
+			});
+
+			// Select2 init
+			if ($('.select2').length > 0) {
+				$.map($('.select2'), function(item, index) {
+					let addParams = [];
+					if ($(item).attr('data-params') !== undefined && $(item).data('params') !== '') {
+						$.map($(item).attr('data-params').split(","), function(p, i_p) {
+							addParams.push({key: p, val: p});
+						});
+					}
+					select2Form(item, addParams);
+				});
+			}
+
+			// ================== EVENT LISTENERS VALIDASI ==================
+			$('#field_nik').on('input blur', validateNik);
+			$('#field_tipe_pengguna').on('change', validateTipePengguna);
+			$('#field_nama').on('input blur', validateNama);
+			$('#field_id_gender').on('change', validateGender);
+			$('#field_tanggal_lahir').on('input blur', validateTanggalLahir);
+			$('#field_pekerjaan').on('change', validatePekerjaan);
+			$('#field_telp').on('input blur', validateTelp);
+			$('#field_alamat_domisili').on('input blur', validateAlamat);
+			$('#field_kodepos_domisili').on('input blur', validateKodePos);
+			$('#field_id_propinsi_domisili').on('change', validateProvinsi);
+			$('#field_username').on('input blur', validateUsername);
+			$('#field_email').on('input blur', validateEmail);
+			$('#field_password').on('input blur', validatePassword);
+			$('#field_konfirmasi_password').on('input blur', validateKonfirmasiPassword);
+
+			// Inisialisasi awal tipe pengguna
+			validateTipePengguna();
+		});
+
+		function select2Form(komp, additionalParam={}, onSel=null, incVal=false) {
+			if ($(komp).find('option').length > 1) {
+				$(komp).select2({
+					width: '100%',
+					placeholder: 'Pilih',
+					allowClear: false
+				}).on('change', function() {
+					if ($(komp).attr('id') === 'field_id_gender') validateGender();
+					if ($(komp).attr('id') === 'field_pekerjaan') validatePekerjaan();
+					if ($(komp).attr('id') === 'field_id_propinsi_domisili') validateProvinsi();
+				});
+				return;
+			}
+
+			$(komp).select2({
+				width: '100%',
+				ajax: {
+					url: $(komp).data('url'),
+					dataType: "JSON",
+					data: function(params) {
+						var defaultParam = {
+							combo: true,
+							term: params.term || '',
+							page: params.page || 1,
+						};
+						let returnParam = defaultParam;
+						if (additionalParam.length > 0) {
+							var rObj = [];
+							additionalParam.forEach(function(item) {
+								rObj[item.key] = $('[name='+item.val.replace(" ", "")+']').val() || $('.'+item.val.replace(" ", "")).val();
+							});
+							returnParam = Object.assign(defaultParam, rObj);
+						}
+						return returnParam;
+					},
+					processResults: function(data, params) {
+						if (!data || data.status == 'failed') return { results: [] };
+						let {page} = params;
+						let {limit, results, pagination} = data;
+						page = page || 1;
+						var mapdata = $.map(results, function(obj) {      
+							return { id: obj.id, text: obj.text };
+						});
+						return { results: mapdata, pagination: pagination };
+					},
+					cache: true
+				},
+				minimumInputLength: 0
+			}).on('change', function() {
+				if ($(komp).attr('id') === 'field_id_gender') validateGender();
+				if ($(komp).attr('id') === 'field_pekerjaan') validatePekerjaan();
+				if ($(komp).attr('id') === 'field_id_propinsi_domisili') validateProvinsi();
+			});
+		}
+
+		// ================== HELPER STATUS VISUAL ==================
+		function setFieldStatus(fieldSel, iconSel, msgSel, status, message) {
+			const $field = $(fieldSel);
+			const $icon = $(iconSel);
+			const $msg = $(msgSel);
+
+			$field.removeClass('is-valid-custom is-invalid-custom is-warning-custom');
+			$icon.removeClass('show success danger warning fa-check fa-times fa-exclamation-triangle');
+			$msg.removeClass('show success danger warning-box').text('');
+
+			if (status === 'valid') {
+				$field.addClass('is-valid-custom');
+				$icon.addClass('show success fa-check');
+				if (message) $msg.addClass('show success').html(message);
+			} else if (status === 'invalid') {
+				$field.addClass('is-invalid-custom');
+				$icon.addClass('show danger fa-times');
+				if (message) $msg.addClass('show danger').html(message);
+			} else if (status === 'warning') {
+				$field.addClass('is-warning-custom');
+				$icon.addClass('show warning fa-exclamation-triangle');
+				if (message) $msg.addClass('show warning-box').html(message);
+			}
+		}
+
+		function updateReq(elemId, isMet) {
+			const $item = $(elemId);
+			if (isMet) {
+				$item.addClass('met').html('<i class="fas fa-check"></i> ' + $item.text().replace(/^[\s\S]*?(Mengandung|Minimal)/, '$1'));
+			} else {
+				$item.removeClass('met').html('<i class="far fa-circle"></i> ' + $item.text().replace(/^[\s\S]*?(Mengandung|Minimal)/, '$1'));
+			}
+		}
+
+		function calculateAge(dateStr) {
+			if (!dateStr) return null;
+			let parts = dateStr.split('/');
+			if (parts.length !== 3) {
+				parts = dateStr.split('-');
+				if (parts.length === 3 && parts[0].length === 4) {
+					parts = [parts[2], parts[1], parts[0]];
+				}
+			}
+			if (parts.length !== 3) return null;
+			const day = parseInt(parts[0], 10);
+			const month = parseInt(parts[1], 10) - 1;
+			const year = parseInt(parts[2], 10);
+			if (isNaN(day) || isNaN(month) || isNaN(year) || year < 1900 || year > 2050) return null;
+
+			const birthDate = new Date(year, month, day);
+			const today = new Date(2026, 8, 1);
+			let age = today.getFullYear() - birthDate.getFullYear();
+			const m = today.getMonth() - birthDate.getMonth();
+			if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+				age--;
+			}
+			return age;
+		}
+
+		// ================== LOGIKA RULE VALIDASI ==================
+		// 1. Rule NIK: Harus berupa angka dan tepat 16 digit
+		function validateNik() {
+			const val = $('#field_nik').val().trim();
+			if (!val) {
+				setFieldStatus('#field_nik', '#icon_nik', '#msg_nik', 'neutral');
+				return false;
+			}
+			if (!/^\d+$/.test(val)) {
+				setFieldStatus('#field_nik', '#icon_nik', '#msg_nik', 'invalid', '&#9888; NIK harus berupa angka.');
+				return false;
+			}
+			if (val.length !== 16) {
+				setFieldStatus('#field_nik', '#icon_nik', '#msg_nik', 'invalid', `&#9888; NIK harus tepat 16 digit. Anda baru memasukkan ${val.length} digit — coba periksa kembali ya.`);
+				return false;
+			}
+			setFieldStatus('#field_nik', '#icon_nik', '#msg_nik', 'valid', '&#10003; NIK 16 digit valid.');
+			return true;
+		}
+
+		// 2. Rule Usia: Minimal 17 tahun dibuktikan dengan tanggal lahir
+		function validateTanggalLahir() {
+			const val = $('#field_tanggal_lahir').val().trim();
+			if (!val) {
+				setFieldStatus('#field_tanggal_lahir', '#icon_tanggal_lahir', '#msg_tanggal_lahir', 'neutral');
+				return false;
+			}
+			const age = calculateAge(val);
+			if (age === null || isNaN(age)) {
+				setFieldStatus('#field_tanggal_lahir', '#icon_tanggal_lahir', '#msg_tanggal_lahir', 'invalid', '&#9888; Format tanggal lahir tidak valid (gunakan DD/MM/YYYY).');
+				return false;
+			}
+			if (age < 17) {
+				setFieldStatus('#field_tanggal_lahir', '#icon_tanggal_lahir', '#msg_tanggal_lahir', 'invalid', `&#9888; Usia ${age} tahun — belum memenuhi syarat pendaftaran (min. 17 tahun).`);
+				return false;
+			}
+			setFieldStatus('#field_tanggal_lahir', '#icon_tanggal_lahir', '#msg_tanggal_lahir', 'valid', `&#10003; Usia ${age} tahun — memenuhi syarat pendaftaran (min. 17 tahun).`);
+			return true;
+		}
+
+		// 3. Rule Nomor Telepon: Format awalan 08, 10–13 digit
+		function validateTelp() {
+			const val = $('#field_telp').val().trim();
+			if (!val) {
+				setFieldStatus('#field_telp', '#icon_telp', '#msg_telp', 'neutral');
+				return false;
+			}
+			if (!/^\d+$/.test(val)) {
+				setFieldStatus('#field_telp', '#icon_telp', '#msg_telp', 'invalid', '&#9888; Nomor telepon harus berupa angka.');
+				return false;
+			}
+			if (!val.startsWith('08')) {
+				setFieldStatus('#field_telp', '#icon_telp', '#msg_telp', 'invalid', '&#9888; Nomor telepon harus diawali dengan 08.');
+				return false;
+			}
+			if (val.length < 10 || val.length > 13) {
+				setFieldStatus('#field_telp', '#icon_telp', '#msg_telp', 'invalid', `&#9888; Nomor telepon harus antara 10–13 digit (Anda memasukkan ${val.length} digit).`);
+				return false;
+			}
+			setFieldStatus('#field_telp', '#icon_telp', '#msg_telp', 'valid', `&#10003; Nomor valid — ${val.length} digit, format Indonesia.`);
+			return true;
+		}
+
+		// 4. Rule Kode Pos: Harus tepat 5 digit angka
+		function validateKodePos() {
+			const val = $('#field_kodepos_domisili').val().trim();
+			if (!val) {
+				setFieldStatus('#field_kodepos_domisili', '#icon_kodepos_domisili', '#msg_kodepos_domisili', 'neutral');
+				return false;
+			}
+			if (!/^\d+$/.test(val)) {
+				setFieldStatus('#field_kodepos_domisili', '#icon_kodepos_domisili', '#msg_kodepos_domisili', 'invalid', '&#9888; Kode pos harus berupa angka.');
+				return false;
+			}
+			if (val.length !== 5) {
+				setFieldStatus('#field_kodepos_domisili', '#icon_kodepos_domisili', '#msg_kodepos_domisili', 'invalid', `&#9888; Kode pos harus tepat 5 digit angka (saat ini ${val.length} digit).`);
+				return false;
+			}
+			setFieldStatus('#field_kodepos_domisili', '#icon_kodepos_domisili', '#msg_kodepos_domisili', 'valid', '&#10003; Kode pos 5 digit sudah benar.');
+			return true;
+		}
+
+		// 5. Rule Password & Konfirmasi Password
+		function validatePassword() {
+			const val = $('#field_password').val();
+			const hasUpper = /[A-Z]/.test(val);
+			const hasLower = /[a-z]/.test(val);
+			const hasNumber = /[0-9]/.test(val);
+			const hasLen = val.length >= 8;
+
+			updateReq('#req_upper', hasUpper);
+			updateReq('#req_lower', hasLower);
+			updateReq('#req_number', hasNumber);
+			updateReq('#req_len', hasLen);
+
+			const metCount = [hasUpper, hasLower, hasNumber, hasLen].filter(Boolean).length;
+
+			$('#pwd_bar_1, #pwd_bar_2, #pwd_bar_3').removeClass('active-weak active-medium active-strong');
+
+			if (!val) {
+				$('#field_password').removeClass('is-valid-custom is-invalid-custom is-warning-custom');
+				$('#msg_password').removeClass('show success danger').text('');
+				validateKonfirmasiPassword();
+				return false;
+			}
+
+			if (metCount <= 2) {
+				$('#pwd_bar_1').addClass('active-weak');
+				$('#field_password').addClass('is-invalid-custom').removeClass('is-valid-custom is-warning-custom');
+				$('#msg_password').addClass('show danger').removeClass('success').html('&#9888; Lemah — lengkapi syarat password di bawah.');
+			} else if (metCount === 3) {
+				$('#pwd_bar_1, #pwd_bar_2').addClass('active-medium');
+				$('#field_password').addClass('is-warning-custom').removeClass('is-valid-custom is-invalid-custom');
+				$('#msg_password').addClass('show').removeClass('success danger').html('<span style="color:#856404;font-weight:600;">Sedang — 1 syarat lagi untuk password kuat.</span>');
+			} else {
+				$('#pwd_bar_1, #pwd_bar_2, #pwd_bar_3').addClass('active-strong');
+				$('#field_password').addClass('is-valid-custom').removeClass('is-invalid-custom is-warning-custom');
+				$('#msg_password').addClass('show success').removeClass('danger').html('&#10003; <strong>Kuat</strong> — password Anda sudah memenuhi syarat!');
+			}
+
+			validateKonfirmasiPassword();
+			return metCount === 4;
+		}
+
+		function validateKonfirmasiPassword() {
+			const pwd = $('#field_password').val();
+			const val = $('#field_konfirmasi_password').val();
+			if (!val) {
+				$('#field_konfirmasi_password').removeClass('is-valid-custom is-invalid-custom');
+				$('#msg_konfirmasi_password').removeClass('show success danger').text('');
+				return false;
+			}
+			if (val !== pwd) {
+				$('#field_konfirmasi_password').addClass('is-invalid-custom').removeClass('is-valid-custom');
+				$('#msg_konfirmasi_password').addClass('show danger').removeClass('success').html('&#9888; Password tidak cocok — periksa kembali.');
+				return false;
+			} else {
+				$('#field_konfirmasi_password').addClass('is-valid-custom').removeClass('is-invalid-custom');
+				$('#msg_konfirmasi_password').addClass('show success').removeClass('danger').html('&#10003; Password cocok — siap melanjutkan!');
+				return true;
+			}
+		}
+
+		// ================== FIELD LAINNYA (INTERAKTIF HIJAU) ==================
+		function validateTipePengguna() {
+			const val = $('#field_tipe_pengguna').val();
+			if (val) {
+				setFieldStatus('#field_tipe_pengguna', '#icon_tipe_pengguna', '#msg_tipe_pengguna', 'valid', '&#10003; Tipe pengguna berhasil dipilih.');
+				return true;
+			}
+			return false;
+		}
+
+		function validateNama() {
+			const val = $('#field_nama').val().trim();
+			if (!val) {
+				setFieldStatus('#field_nama', '#icon_nama', '#msg_nama', 'neutral');
+				return false;
+			}
+			if (val.length < 3) {
+				setFieldStatus('#field_nama', '#icon_nama', '#msg_nama', 'invalid', '&#9888; Masukkan nama lengkap minimal 3 karakter.');
+				return false;
+			}
+			setFieldStatus('#field_nama', '#icon_nama', '#msg_nama', 'valid', '&#10003; Nama terlihat sudah lengkap.');
+			return true;
+		}
+
+		function validateGender() {
+			const val = $('#field_id_gender').val();
+			if (val) {
+				$('#field_id_gender').closest('.form-group').find('.select2-selection').addClass('select2-valid').removeClass('select2-invalid');
+				$('#icon_id_gender').addClass('show fa-check success').removeClass('fa-times danger');
+				$('#msg_id_gender').addClass('show success').removeClass('danger').html('&#10003; Jenis kelamin dipilih.');
+				return true;
+			} else {
+				$('#field_id_gender').closest('.form-group').find('.select2-selection').removeClass('select2-valid select2-invalid');
+				$('#icon_id_gender').removeClass('show');
+				$('#msg_id_gender').removeClass('show');
+				return false;
+			}
+		}
+
+		function validatePekerjaan() {
+			const val = $('#field_pekerjaan').val();
+			if (val) {
+				$('#field_pekerjaan').closest('.form-group').find('.select2-selection').addClass('select2-valid').removeClass('select2-invalid');
+				$('#icon_pekerjaan').addClass('show fa-check success').removeClass('fa-times danger');
+				$('#msg_pekerjaan').addClass('show success').removeClass('danger').html('&#10003; Pekerjaan dipilih.');
+				return true;
+			} else {
+				$('#field_pekerjaan').closest('.form-group').find('.select2-selection').removeClass('select2-valid select2-invalid');
+				$('#icon_pekerjaan').removeClass('show');
+				$('#msg_pekerjaan').removeClass('show');
+				return false;
+			}
+		}
+
+		function validateAlamat() {
+			const val = $('#field_alamat_domisili').val().trim();
+			if (!val) {
+				$('#field_alamat_domisili').removeClass('is-valid-custom is-invalid-custom is-warning-custom');
+				$('#msg_alamat_domisili').removeClass('show success danger warning-box').text('');
+				return false;
+			}
+			if (val.length < 15) {
+				$('#field_alamat_domisili').addClass('is-warning-custom').removeClass('is-valid-custom is-invalid-custom');
+				$('#msg_alamat_domisili').addClass('show warning-box').removeClass('success danger').html('💡 <strong>Hmm, sepertinya alamat Anda belum lengkap.</strong> Sertakan nama jalan, RT/RW, Kelurahan/Desa, Kecamatan, dan Kota/Kabupaten agar petugas kami bisa menindaklanjuti dengan tepat.<br><small style="color:#8a6d3b;"><em>Contoh: Jl. Kompol Maksum No. 12, Kel. Surabaya Baru, Kec. Ratu Agung, Kota Bengkulu</em></small>');
+				return false;
+			}
+			$('#field_alamat_domisili').addClass('is-valid-custom').removeClass('is-invalid-custom is-warning-custom');
+			$('#msg_alamat_domisili').addClass('show success').removeClass('danger warning-box').html('&#10003; Alamat domisili sudah lengkap.');
+			return true;
+		}
+
+		function validateProvinsi() {
+			const val = $('#field_id_propinsi_domisili').val();
+			if (val) {
+				$('#field_id_propinsi_domisili').closest('.form-group').find('.select2-selection').addClass('select2-valid').removeClass('select2-invalid');
+				$('#icon_id_propinsi_domisili').addClass('show fa-check success').removeClass('fa-times danger');
+				$('#msg_id_propinsi_domisili').addClass('show success').removeClass('danger').html('&#10003; Provinsi dipilih.');
+				return true;
+			} else {
+				$('#field_id_propinsi_domisili').closest('.form-group').find('.select2-selection').removeClass('select2-valid select2-invalid');
+				$('#icon_id_propinsi_domisili').removeClass('show');
+				$('#msg_id_propinsi_domisili').removeClass('show');
+				return false;
+			}
+		}
+
+		function validateUsername() {
+			const val = $('#field_username').val().trim();
+			if (!val) {
+				setFieldStatus('#field_username', '#icon_username', '#msg_username', 'neutral');
+				return false;
+			}
+			if (val.toLowerCase() === 'admin123' || val.toLowerCase() === 'admin') {
+				$('#field_username').addClass('is-warning-custom').removeClass('is-valid-custom is-invalid-custom');
+				$('#icon_username').addClass('show fa-exclamation-triangle warning').removeClass('fa-check success fa-times danger');
+				$('#msg_username').addClass('show warning-box').removeClass('success danger').html(`💡 Username "<strong>${val}</strong>" sudah digunakan. Coba variasi seperti <strong>${val}_senju</strong> atau <strong>senjukreatif</strong>.`);
+				return false;
+			}
+			if (val.length < 4) {
+				setFieldStatus('#field_username', '#icon_username', '#msg_username', 'invalid', '&#9888; Username minimal 4 karakter.');
+				return false;
+			}
+			setFieldStatus('#field_username', '#icon_username', '#msg_username', 'valid', '&#10003; Username tersedia.');
+			return true;
+		}
+
+		function validateEmail() {
+			const val = $('#field_email').val().trim();
+			if (!val) {
+				setFieldStatus('#field_email', '#icon_email', '#msg_email', 'neutral');
+				return false;
+			}
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			if (!emailRegex.test(val)) {
+				setFieldStatus('#field_email', '#icon_email', '#msg_email', 'invalid', '&#9888; Format email tidak valid.');
+				return false;
+			}
+			setFieldStatus('#field_email', '#icon_email', '#msg_email', 'valid', '&#10003; Alamat email valid dan siap digunakan.');
+			return true;
+		}
+	</script>
+</body>
+</html>
